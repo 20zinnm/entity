@@ -3,7 +3,6 @@ package entity
 import (
 	"sync/atomic"
 	"sync"
-	"fmt"
 )
 
 var (
@@ -67,7 +66,6 @@ func (m *Manager) Remove(entity ID) {
 func (m *Manager) remover() {
 	for id := range m.remove {
 		m.stateMu.Lock()
-		fmt.Println("here")
 		for _, system := range m.systems {
 			system.Remove(id)
 		}
